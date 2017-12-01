@@ -17,10 +17,17 @@
 
     console.log('Connected to mongodb server');
 
-    db.collection('Todos').insertOne({
+    db.collection('Todos').insertMany([{
       text:'Something to do',
       completed:false
-    },(err, result)=>{
+    },{
+      text:'Something to do',
+      completed:false
+    },{
+      text:'Something to do',
+      completed:true
+    }]
+    ,(err, result)=>{
       if(err)
       {
         return console.log('Unable to insert todo',err);
@@ -32,21 +39,21 @@
     });
 
 
-    db.collection('Users').insertOne({
-      name:'vineet',
-      age:'29',
-      location:'Chennai'
-    },(err, result)=>{
-      if(err)
-      {
-        return console.log('Unable to insert User',err);
-      }
-
-      console.log(JSON.stringify(result.ops,undefined,2));
-      console.log(result.ops[0]._id.getTimestamp());
-
-
-    });
+    // db.collection('Users').insertOne({
+    //   name:'Sriram',
+    //   age:'29',
+    //   location:'Chennai'
+    // },(err, result)=>{
+    //   if(err)
+    //   {
+    //     return console.log('Unable to insert User',err);
+    //   }
+    //
+    //   console.log(JSON.stringify(result.ops,undefined,2));
+    //   console.log(result.ops[0]._id.getTimestamp());
+    //
+    //
+    // });
     db.close();
 
 
